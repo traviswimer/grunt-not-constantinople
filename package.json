@@ -1,0 +1,49 @@
+{
+  "name": "grunt-not-constantinople",
+  "description": "Grunt task to easily add Istanbul code coverage using any unit-testing framework.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/traviswimer/grunt-not-constantinople",
+  "author": {
+    "name": "Travis Wimer",
+    "email": "npm@traviswimer.com",
+    "url": "http://traviswimer.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/traviswimer/grunt-not-constantinople.git"
+  },
+  "bugs": {
+    "url": "https://github.com/traviswimer/grunt-not-constantinople/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/traviswimer/grunt-not-constantinople/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt-istanbul": "~0.2.4",
+    "grunt-istanbul-coverage": "0.0.2",
+    "grunt-contrib-clean": "~0.4.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.4"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "gruntplugin",
+    "istanbul",
+    "code coverage",
+    "unit-testing"
+  ]
+}

@@ -1,4 +1,4 @@
-# grunt-not-constantinople
+# grunt-not-constantinople [![Build Status](https://travis-ci.org/traviswimer/grunt-not-constantinople.png?branch=master)](https://travis-ci.org/traviswimer/grunt-not-constantinople)
 
 > Grunt task to easily add Istanbul code coverage using any unit-testing framework.
 

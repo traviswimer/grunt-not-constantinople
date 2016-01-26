@@ -24,7 +24,7 @@ grunt.initConfig({
   not_constantinople: {
     coverage: {
       options: {
-        unitTestTask: "mochaTest"
+        unitTestTask: 'mochaTest'
       }
     }
   },
@@ -49,9 +49,10 @@ In your project's Gruntfile, add a section named `not_constantinople` to the dat
 ```js
 grunt.initConfig({
   not_constantinople: {
-    istanbul_options{
+    customized_coverage: {
       options: {
-        unitTestTask: 'myUnitTestingTask' // REQUIRED OPTION - This should be the task that runs your unit tests (e.g. 'mochaTest', 'nodeunit:myTests', etc.)
+        // REQUIRED OPTION - This should be the task that runs your unit tests (e.g. 'mochaTest', 'nodeunit:myTests', etc.)
+        unitTestTask: 'myUnitTestingTask',
         // directory names to be used for your tests and coverage
         directories: {
           root: 'test',
@@ -60,23 +61,25 @@ grunt.initConfig({
         },
         // Coverage thresholds. Set to false to ignore thresholds
         thresholds: {
-          'statements': 90,
-          'branches': 90,
-          'lines': 90,
-          'functions': 90
+          statements: 90,
+          branches: 90,
+          lines: 90,
+          functions: 90
         },
         // The format of the coverage reports
         report: {
           type: 'lcov',
           print: 'detail'
         },
-        cleanup: true, // removes the contents of the coverage folder before running istanbul
+        // removes the contents of the coverage folder before running Istanbul
+        cleanup: true
       }
     }
   },
 });
 ```
-*All values in this example represent the defaul values that will be used if they are not specified*
+
+*All values in this example represent the default values that will be used if they are not specified.*
 
 ### Options
 
@@ -106,7 +109,7 @@ Type: `object`
 #### options.cleanup
 Type: `boolean`
 
-If true, will remove the contents of the coverage folder before running istanbul
+If `true`, will remove the contents of the coverage folder before running Istanbul.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

@@ -10,13 +10,13 @@
 
 module.exports = function(grunt) {
 
+  var loader = require('grunt-loadnpmtasks')(grunt);
+
+
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('not_constantinople', 'Grunt task to easily add Istanbul code coverage using any unit-testing framework.', function() {
-
-
-    var cleaner = require('grunt-contrib-clean');
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
@@ -42,9 +42,9 @@ module.exports = function(grunt) {
     var dirs = options.directories;
 
     // Load task dependencies
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-istanbul');
-    grunt.loadNpmTasks('grunt-istanbul-coverage');
+    loader.loadNpmTasks('grunt-contrib-clean');
+    loader.loadNpmTasks('grunt-istanbul');
+    loader.loadNpmTasks('grunt-istanbul-coverage');
 
     // Set clean config
     if( options.cleanup === true ){

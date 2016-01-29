@@ -108,6 +108,17 @@ Type: `boolean`
 
 If true, will remove the contents of the coverage folder before running istanbul
 
+#### options.instrumentationOptions
+Type: `object`
+
+Use this to pass additional Istanbul instrumentation configuration along (some values may be overridden by this task). See the "instrumentation" section of the command output from `istanbul help config`.
+
+#### options.reportingOptions
+Type: `object`
+
+Use this to pass additional Istanbul reporting configuration along (some values may be overridden by this task). See the "reporting" section of the command output from `istanbul help config`.
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 

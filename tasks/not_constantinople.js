@@ -96,17 +96,18 @@ module.exports = function(grunt) {
 
 
     // Only run coverage checker if thesholds are set
-    if( typeof options.thresholds === "object" ){
+    if( typeof options.thresholds === "object" && options.thresholds ){
 
-      var coverageConfig = {
+      // Generate config for "coverage" task, then run it
+      var coverageTaskConfig = {
         options: {
           thresholds: options.thresholds,
           dir: dirs.coverage + '/reports/',
           root: dirs.root
         }
       };
-      grunt.config("coverage", coverageConfig);
-      grunt.task.run('coverage');
+      grunt.config("coverage." + this.name, coverageTaskConfig);
+      grunt.task.run('coverage:' + this.name);
 
     }
 

@@ -40,7 +40,7 @@ module.exports = function(grunt) {
           directories: {
             root: 'custom_test',
             coverage: 'cov',
-            sourceFiles: 'app'
+            sourceFiles: 'app/*.js'
           },
           thresholds: {
             'statements': 50,

@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       directories: {
         root: 'test',
         coverage: 'coverage',
-        sourceFiles: 'app'
+        sourceFiles: 'app/*.js'
       },
       thresholds: {
         'statements': 90,
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
     // Set instrument config
     var instrumentConfig = {
-      files: dirs.sourceFiles + '/*.js',
+      files: dirs.sourceFiles,
       options: {
         lazy: true,
         basePath: dirs.root + '/' + dirs.coverage + '/instrument/'

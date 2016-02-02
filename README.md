@@ -57,7 +57,7 @@ grunt.initConfig({
         directories: {
           root: 'test',
           coverage: 'coverage',
-          sourceFiles: 'app'
+          sourceFiles: 'app/*.js'
         },
         // Coverage thresholds. Set to false to ignore thresholds
         thresholds: {

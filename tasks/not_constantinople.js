@@ -26,17 +26,19 @@ module.exports = function(grunt) {
         sourceFiles: 'app/*.js'
       },
       thresholds: {
-        'statements': 90,
-        'branches': 90,
-        'lines': 90,
-        'functions': 90
+        statements: 90,
+        branches: 90,
+        lines: 90,
+        functions: 90
       },
       report: {
         type: 'lcov',
         print: 'detail'
       },
       cleanup: true,
-      unitTestTask: false
+      unitTestTask: false,
+      instrumentationOptions: {},
+      reportingOptions: {}
     });
 
     var dirs = options.directories;
@@ -46,24 +48,25 @@ module.exports = function(grunt) {
     loader.loadNpmTasks('grunt-istanbul');
     loader.loadNpmTasks('grunt-istanbul-coverage');
 
-    // Set clean config
+    // Generate config for "clean:..." task(s), then run it
     if( options.cleanup === true ){
-      var cleanConfig =  [dirs.root + '/' + dirs.coverage];
-      grunt.config("clean." + this.name, cleanConfig);
+      var cleanTaskConfig =  [dirs.root + '/' + dirs.coverage];
+      grunt.config("clean." + this.name, cleanTaskConfig);
       grunt.task.run('clean:' + this.name);
     }
 
 
-    // Set instrument config
-    var instrumentConfig = {
+    // Generate config for "instrument" task, then run it
+    var instrumentationOptions = options.instrumentationOptions || {};
+    instrumentationOptions.lazy = true;
+    instrumentationOptions.basePath = dirs.root + '/' + dirs.coverage + '/instrument/';
+    var instrumentTaskConfig = {
       files: dirs.sourceFiles,
-      options: {
-        lazy: true,
-        basePath: dirs.root + '/' + dirs.coverage + '/instrument/'
-      }
+      options: instrumentationOptions
     };
-    grunt.config("instrument", instrumentConfig);
+    grunt.config("instrument", instrumentTaskConfig);
     grunt.task.run('instrument');
+
 
     // Run unit tests
     if( typeof options.unitTestTask !== "string" ){
@@ -72,26 +75,26 @@ module.exports = function(grunt) {
     grunt.task.run( options.unitTestTask );
 
 
-    // Store coverage
-    var storeCoverageConfig = {
+    // Generate config for "storeCoverage" task, then run it
+    var storeCoverageTaskConfig = {
       options: {
         dir: dirs.root + '/' + dirs.coverage + '/reports'
       }
     };
-    grunt.config("storeCoverage", storeCoverageConfig);
+    grunt.config("storeCoverage", storeCoverageTaskConfig);
     grunt.task.run('storeCoverage');
 
 
-    // Store coverage
-    var makeReportConfig = {
+    // Generate config for "makeReport" task, then run it
+    var reportingOptions = options.reportingOptions || {};
+    reportingOptions.type = options.report.type;
+    reportingOptions.dir = dirs.root + '/' + dirs.coverage + '/reports';
+    reportingOptions.print = options.report.print;
+    var makeReportTaskConfig = {
       src: dirs.root + '/' + dirs.coverage + '/reports/**/*.json',
-      options: {
-        type: options.report.type,
-        dir: dirs.root + '/' + dirs.coverage + '/reports',
-        print: options.report.print
-      }
+      options: reportingOptions
     };
-    grunt.config("makeReport", makeReportConfig);
+    grunt.config("makeReport", makeReportTaskConfig);
     grunt.task.run('makeReport');
 
 
